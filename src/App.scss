@@ -1,0 +1,119 @@
+@import './libs/reset';
+
+html {
+	font-size: 16px;
+}
+
+body {
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 1rem;
+}
+
+.the-void {
+	background-color: black;
+	overflow: hidden;
+	position: relative;
+	height: 100vh;
+	width: 100%;
+}
+
+.starpoint {
+	/* background-color: #f0f; */
+	height: 1px;
+	width: 1px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.star {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+
+
+.the-void.graphic--windows {
+
+	.star {
+		height: 86px;
+		width: 71px;
+	}
+
+}
+
+
+
+.the-void.graphic--stars {
+
+	.star {
+		background-color: white;
+		height: 3px;
+		width: 3px;
+
+		svg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+
+}
+
+
+
+
+
+.controls {
+	background-color: lightgray;
+	max-width: 640px;
+	position: absolute;
+	bottom: 5vh;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+}
+
+.controls-title {
+	background-color: blue;
+	border: 2px solid black;
+	border-top-color: white;
+	border-right-color: white;
+	color: white;
+	font-weight: bold;
+	padding: .5rem;
+	text-align: center;
+	width: 100%;
+}
+
+.controls-group {
+	border: 1px solid black;
+	margin: 1rem;
+	padding: .5rem;
+}
+
+.controls-heading {
+	background-color: lightgray;
+	display: inline-block;
+	margin-bottom: -.5rem;
+	padding: 0 .25em;
+	position: relative;
+	top: -.8em;
+	width: auto;
+}
+
+.controls-list {
+	display: flex;
+	gap: 1rem;
+}
+
+.controls-slide-labels {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+}
+
+.controls-slide {
+	width: 100%;
+}
