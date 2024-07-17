@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Starpoint } from './components/starpoint/starpoint.component';
 import { Controls } from './components/controls/controls.component';
