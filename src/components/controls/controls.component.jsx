@@ -29,10 +29,10 @@ export const Controls = () => {
 
           <ul className="controls-list">
             <li className="controls-list-item">
-              <label htmlFor="graphic-windows"><input type="radio" className="controls-radio controls-radio--graphic" name="graphic" id="graphic-windows" value="windows" onChange={graphicTypeOnChange} />Windows</label>
+              <label htmlFor="graphic-windows"><input type="radio" className="controls-radio controls-radio--graphic" name="graphic" id="graphic-windows" value="windows" defaultChecked={graphicType==='windows'} onChange={graphicTypeOnChange} />Windows</label>
             </li>
             <li className="controls-list-item">
-              <label htmlFor="graphic-stars"><input type="radio" className="controls-radio controls-radio--graphic" name="graphic" id="graphic-stars" value="stars" onChange={graphicTypeOnChange} />Stars</label>
+              <label htmlFor="graphic-stars"><input type="radio" className="controls-radio controls-radio--graphic" name="graphic" id="graphic-stars" value="stars" defaultChecked={graphicType==='stars'} onChange={graphicTypeOnChange} />Stars</label>
             </li>
           </ul>
           
