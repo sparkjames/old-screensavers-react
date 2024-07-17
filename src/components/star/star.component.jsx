@@ -40,6 +40,8 @@ export const Star = () => {
 	const { graphicType } = useContext(GraphicTypeContext);
 	const { warpSpeed } = useContext(WarpSpeedContext);
 
+	const starRef = useRef(null);
+
 	const [left, setLeft] = useState(`${initX()}px`);
 	const [top, setTop] = useState(`${initY()}px`);
 	const [transform, setTransform] = useState('translate3d(0px, 0px, 0px)');
@@ -93,6 +95,18 @@ export const Star = () => {
 	};
 
 	useEffect( () => {
+		console.log('new warp speed = ', warpSpeed);
+		// const multiplier = parseInt( warpSpeed ) * .1;
+		// // const multiplier = 1.25;
+		// const transition_min = 7 * multiplier;
+		// const transition_max = 30 * multiplier;
+		// const transition_seconds = getRandomIntInclusive(transition_min, transition_max);
+		// const new_transition = `transform ${transition_seconds}s linear, opacity ${transition_seconds / 2}s linear`;
+		// setTransition(new_transition);
+		moveStar();
+	}, [warpSpeed]);
+
+	useEffect( () => {
 		clearTimeout(timeoutRef.current);
 		timeoutRef.current = setTimeout( resetStarPosition, 1000 );
 	}, []);
@@ -106,6 +120,7 @@ export const Star = () => {
 			$transition={transition}
 			$color={color}
 			$graphictype={graphicType}
+			ref={starRef}
 		>
 			{ graphicType === 'windows' &&
 			<WindowsSVG></WindowsSVG>

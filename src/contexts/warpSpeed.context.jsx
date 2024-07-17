@@ -1,7 +1,7 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 export const WarpSpeedContext = createContext({
-	warpSpeed: '',
+	warpSpeed: 0,
 	setWarpSpeed: () => {},
 });
 
