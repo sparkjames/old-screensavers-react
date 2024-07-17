@@ -1,5 +1,4 @@
-import styled, { css } from "styled-components";
-import { getRandom16Color } from '../../utilities/getRandom16Color';
+import styled from "styled-components";
 
 export const StarEl = styled.div`
 	position: absolute;
