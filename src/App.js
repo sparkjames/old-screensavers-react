@@ -13,7 +13,7 @@ function App() {
   // }, []);
 
   return (
-    <div class="the-void graphic--windows">
+    <div className="the-void graphic--windows">
 
       <Starpoint starCount={starCount}></Starpoint>
 

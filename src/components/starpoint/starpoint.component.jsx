@@ -11,7 +11,7 @@ export const Starpoint = ( {starCount} ) => {
 		const newStars = [];
 		for( let i=0; i<starCount; i++ ){
 			newStars.push(
-				<Star></Star>
+				<Star key={i}></Star>
 			);
 		}
 		setStars( newStars );
