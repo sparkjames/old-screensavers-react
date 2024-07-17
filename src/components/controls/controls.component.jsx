@@ -1,10 +1,12 @@
 import './controls.component.scss';
 import { GraphicTypeContext } from '../../contexts/graphicType.context';
+import { WarpSpeedContext } from '../../contexts/warpSpeed.context';
 import { useContext } from 'react';
 
 export const Controls = () => {
 
 	const { graphicType, setGraphicType } = useContext(GraphicTypeContext);
+	const { setWarpSpeed } = useContext(WarpSpeedContext);
 
 	const graphicTypeOnChange = (e) => {
 		// console.log( 'graphicTypeOnChange()');
@@ -18,6 +20,10 @@ export const Controls = () => {
     if ( allowedGraphicTypes.indexOf(e.target.value) >= 0 ){
       setGraphicType( e.target.value );
     }
+	};
+
+	const warpSpeedOnChange = (e) => {
+		setWarpSpeed( parseInt( e.target.value ) );
 	};
 
 	return (
@@ -38,7 +44,7 @@ export const Controls = () => {
           
         </div>
 
-        {/* <div className="controls-group controls-group--quantity">
+        <div className="controls-group controls-group--quantity">
           <h2 className="controls-heading">Warp Speed</h2>
 
           <div className="controls-slide-container">
@@ -46,9 +52,9 @@ export const Controls = () => {
               <p className="controls-slide-label">Slow</p>
               <p className="controls-slide-label">Fast</p>
             </div>
-            <input type="range" min="10" max="150" value="50" className="controls-slide controls-slide--quantity" id="controls-slide--quantity"/>
+            <input type="range" min="10" max="150" value="50" className="controls-slide controls-slide--quantity" id="controls-slide--quantity" onChange={warpSpeedOnChange} />
           </div>
-        </div> */}
+        </div>
         
       </div>
 	);

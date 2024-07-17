@@ -6,6 +6,7 @@ import getRandomIntInclusive from '../../utilities/getRandomIntInclusive';
 import { ReactComponent as WindowsSVG } from '../../assets/windows311.svg';
 
 import { GraphicTypeContext } from '../../contexts/graphicType.context';
+import { WarpSpeedContext } from '../../contexts/warpSpeed.context';
 
 // const perspective = '15in'; // The perspective distance (for CSS).
 const star_z_distance = '16in'; // The distance for the stars to move (for CSS).
@@ -36,7 +37,8 @@ function initY(){
 
 export const Star = () => {
 
-	const { graphicType, setGraphicType } = useContext(GraphicTypeContext);
+	const { graphicType } = useContext(GraphicTypeContext);
+	const { warpSpeed } = useContext(WarpSpeedContext);
 
 	const [left, setLeft] = useState(`${initX()}px`);
 	const [top, setTop] = useState(`${initY()}px`);

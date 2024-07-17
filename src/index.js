@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { GraphicTypeProvider } from './contexts/graphicType.context';
+import { WarpSpeedProvider } from './contexts/warpSpeed.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GraphicTypeProvider>
-      <App />
+      <WarpSpeedProvider>
+        <App />
+      </WarpSpeedProvider>
     </GraphicTypeProvider>
   </React.StrictMode>
 );
