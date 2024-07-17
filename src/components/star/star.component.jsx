@@ -1,8 +1,11 @@
 import { StarEl } from './star.styles';
 import { getRandom16Color } from '../../utilities/getRandom16Color';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useContext } from 'react';
 import getRandomIntInclusive from '../../utilities/getRandomIntInclusive';
+
 import { ReactComponent as WindowsSVG } from '../../assets/windows311.svg';
+
+import { GraphicTypeContext } from '../../contexts/graphicType.context';
 
 // const perspective = '15in'; // The perspective distance (for CSS).
 const star_z_distance = '16in'; // The distance for the stars to move (for CSS).
@@ -31,7 +34,9 @@ function initY(){
 	return y;
 }
 
-export const Star = ( {graphicType } ) => {
+export const Star = () => {
+
+	const { graphicType, setGraphicType } = useContext(GraphicTypeContext);
 
 	const [left, setLeft] = useState(`${initX()}px`);
 	const [top, setTop] = useState(`${initY()}px`);
@@ -98,7 +103,7 @@ export const Star = ( {graphicType } ) => {
 			$opacity={opacity} 
 			$transition={transition}
 			$color={color}
-			graphictype={graphicType}
+			$graphictype={graphicType}
 		>
 			{ graphicType === 'windows' &&
 			<WindowsSVG></WindowsSVG>

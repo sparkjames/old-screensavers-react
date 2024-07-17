@@ -30,8 +30,8 @@ export const StarEl = styled.div`
 	opacity: ${props => props.$opacity || '0'};
 	transition: ${props => props.$transition || 'none'};
 
-	${ ({graphictype}) => graphictype === 'windows' && windowsGraphicStyles }
+	${ ({$graphictype}) => $graphictype === 'windows' && windowsGraphicStyles }
 
-	${ ({graphictype}) => graphictype === 'stars' && starsGraphicStyles }
+	${ ({$graphictype}) => $graphictype === 'stars' && starsGraphicStyles }
 	
 `;

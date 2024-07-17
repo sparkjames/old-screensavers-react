@@ -3,11 +3,27 @@ import './App.scss';
 import { useEffect, useState } from 'react';
 
 import { Starpoint } from './components/starpoint/starpoint.component';
+import { Controls } from './components/controls/controls.component';
 
 function App() {
 
   const [starCount, setStarCount] = useState(100);
-  const [graphicType, setGraphicType] = useState('windows');
+  // const [graphicType, setGraphicType] = useState('windows');
+
+  // const graphicTypeOnChange = (e) => {
+  //   console.log( 'graphicTypeOnChange()');
+  //   console.log( e.target.value );
+
+  //   const allowedGraphicTypes = [
+  //     'windows',
+  //     'stars',
+  //   ];
+
+  //   if ( allowedGraphicTypes.indexOf(e.target.value) >= 0 ){
+  //     setGraphicType( e.target.value );
+  //   }
+    
+  // };
 
   // useEffect( () => {
 
@@ -16,7 +32,9 @@ function App() {
   return (
     <div className="the-void">
 
-      <Starpoint starCount={starCount} graphicType={graphicType}></Starpoint>
+      <Starpoint starCount={starCount}></Starpoint>
+
+      <Controls></Controls>
 
       {/* <div class="controls">
         <h1 class="controls-title">Screensaver Setup</h1>
