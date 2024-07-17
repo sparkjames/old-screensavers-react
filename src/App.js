@@ -7,15 +7,16 @@ import { Starpoint } from './components/starpoint/starpoint.component';
 function App() {
 
   const [starCount, setStarCount] = useState(100);
+  const [graphicType, setGraphicType] = useState('windows');
 
   // useEffect( () => {
 
   // }, []);
 
   return (
-    <div className="the-void graphic--windows">
+    <div className="the-void">
 
-      <Starpoint starCount={starCount}></Starpoint>
+      <Starpoint starCount={starCount} graphicType={graphicType}></Starpoint>
 
       {/* <div class="controls">
         <h1 class="controls-title">Screensaver Setup</h1>

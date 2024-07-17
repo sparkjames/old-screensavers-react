@@ -31,7 +31,7 @@ function initY(){
 	return y;
 }
 
-export const Star = () => {
+export const Star = ( {graphicType } ) => {
 
 	const [left, setLeft] = useState(`${initX()}px`);
 	const [top, setTop] = useState(`${initY()}px`);
@@ -98,8 +98,11 @@ export const Star = () => {
 			$opacity={opacity} 
 			$transition={transition}
 			$color={color}
+			graphictype={graphicType}
 		>
+			{ graphicType === 'windows' &&
 			<WindowsSVG></WindowsSVG>
+			}
 		</StarEl>
 	);
 
