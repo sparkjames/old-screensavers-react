@@ -72,8 +72,8 @@ export const Star = () => {
 	const moveStar = () => {
 		// Set a random time (in seconds) for the transition, so some stars will be fast and others slow.
 		// TODO: Work the value of input.controls-slide--quantity into the transition number(s) here.
-		// const multiplier = parseInt( document.querySelector('.controls-slide--quantity').value ) * .01;
-		const multiplier = 1.25;
+		const multiplier = parseInt( warpSpeed ) * .01;
+		// const multiplier = 1.25;
 		const transition_min = 7 * multiplier;
 		const transition_max = 30 * multiplier;
 		const transition_seconds = getRandomIntInclusive(transition_min, transition_max);

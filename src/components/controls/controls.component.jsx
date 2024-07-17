@@ -24,6 +24,7 @@ export const Controls = () => {
 
 	const warpSpeedOnChange = (e) => {
 		setWarpSpeed( parseInt( e.target.value ) );
+		console.log('setting warpSpeed value to ', parseInt( e.target.value ));
 	};
 
 	return (
@@ -52,7 +53,7 @@ export const Controls = () => {
               <p className="controls-slide-label">Slow</p>
               <p className="controls-slide-label">Fast</p>
             </div>
-            <input type="range" min="10" max="150" value="50" className="controls-slide controls-slide--quantity" id="controls-slide--quantity" onChange={warpSpeedOnChange} />
+            <input type="range" min="10" max="150" defaultValue="70" className="controls-slide controls-slide--quantity" id="controls-slide--quantity" onMouseUp={warpSpeedOnChange} />
           </div>
         </div>
         
