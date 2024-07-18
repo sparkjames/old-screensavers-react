@@ -13,7 +13,7 @@ export const ControlGroupWarpSpeed = () => {
 	};
 
 	return (
-		<div className="controls-group controls-group--quantity">
+		<div className="controls-group controls-group--warpspeed">
 			<h2 className="controls-heading">Warp Speed</h2>
 
 			<div className="controls-slide-container">
@@ -21,7 +21,7 @@ export const ControlGroupWarpSpeed = () => {
 					<p className="controls-slide-label">Slow</p>
 					<p className="controls-slide-label">Fast</p>
 				</div>
-				<input type="range" min="10" max="150" defaultValue="70" className="controls-slide controls-slide--quantity" id="controls-slide--quantity" onMouseUp={warpSpeedOnChange} />
+				<input type="range" min="10" max="150" defaultValue="70" className="controls-slide controls-slide--warpspeed" id="controls-slide--warpspeed" onMouseUp={warpSpeedOnChange} />
 			</div>
 		</div>
 	);
