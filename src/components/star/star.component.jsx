@@ -9,7 +9,7 @@ import { GraphicTypeContext } from '../../contexts/graphicType.context';
 import { WarpSpeedContext } from '../../contexts/warpSpeed.context';
 
 // const perspective = '15in'; // The perspective distance (for CSS).
-const star_z_distance = '16in'; // The distance for the stars to move (for CSS).
+// const star_z_distance = '16in'; // The distance for the stars to move (for CSS).
 
 /**
  * Get a random integer that is at most 75% of the screen width.
@@ -42,11 +42,6 @@ export const Star = () => {
 
 	const starRef = useRef(null);
 
-	const [left, setLeft] = useState(`${initX()}px`);
-	const [top, setTop] = useState(`${initY()}px`);
-	const [transform, setTransform] = useState('translate3d(0px, 0px, 0px)');
-	const [opacity, setOpacity] = useState('0');
-	const [transition, setTransition] = useState('none');
 	const [color, setColor] = useState(getRandom16Color());
 	const [runAnimation, setRunAnimation] = useState(false);
 	// const [zIndex, setZIndex] = useState('1');
@@ -56,18 +51,10 @@ export const Star = () => {
 	const timeoutRef = useRef(0);
 
 	const resetStarPosition = () => {
-		setLeft(`${initX()}px`);
-		setTop(`${initY()}px`);
-		// setTransform('translate3d(0px, 0px, 0px)');
-		// setOpacity('0')
-		// setTransition('none');
 		setColor(getRandom16Color());
-// console.log('starRef = ', starRef);
 		starRef.current.style.left = `${initX()}px`;
 		starRef.current.style.top = `${initY()}px`;
 
-		// starRef.current.style.animationPlayState = 'unset';
-		// starRef.current.style.animationDuration = '0s';
 		setRunAnimation(false);
 
 		// Get a random number of miliseconds to delay triggering the movement on this star.
@@ -81,23 +68,14 @@ export const Star = () => {
 
 	const moveStar = () => {
 		// Set a random time (in seconds) for the transition, so some stars will be fast and others slow.
-		// TODO: Work the value of input.controls-slide--quantity into the transition number(s) here.
 		const multiplier = parseInt( warpSpeed ) * .01;
-		// const multiplier = 1.25;
 		const transition_min = 7 * multiplier;
 		const transition_max = 30 * multiplier;
 		const transition_seconds = getRandomIntInclusive(transition_min, transition_max);
-		// const new_transition = `transform ${transition_seconds}s linear, opacity ${transition_seconds / 2}s linear`;
-		// setTransition(new_transition);
+
 		starRef.current.style.animationDuration = `${transition_seconds}s`;
 
-		// Replace the Z transform value and set the opacity to triger the transition animation.
-		// const new_transform = `translate3d(0px, 0px, ${star_z_distance})`;
-		// const new_opacity = '1';
-		// setTransform(new_transform);
-		// setOpacity(new_opacity);
-
-		// starRef.current.style.animationPlayState = 'running';
+		// Triger the animation.
 		setRunAnimation(true);
 
 		// Reset the star position after a timeout that is delayed for the same time as the above transition.
@@ -107,14 +85,7 @@ export const Star = () => {
 	};
 
 	useEffect( () => {
-		console.log('new warp speed = ', warpSpeed);
-		// const multiplier = parseInt( warpSpeed ) * .1;
-		// // const multiplier = 1.25;
-		// const transition_min = 7 * multiplier;
-		// const transition_max = 30 * multiplier;
-		// const transition_seconds = getRandomIntInclusive(transition_min, transition_max);
-		// const new_transition = `transform ${transition_seconds}s linear, opacity ${transition_seconds / 2}s linear`;
-		// setTransition(new_transition);
+		// console.log('new warp speed = ', warpSpeed);
 		moveStar();
 	}, [warpSpeed]);
 

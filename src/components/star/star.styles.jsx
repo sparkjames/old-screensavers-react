@@ -33,25 +33,6 @@ const moveStarAnimation = keyframes`
 	}
 `;
 
-// export const StarEl = styled.div.attrs(props => ({
-// 		style: {
-// 			left: props.$left || '0',
-// 			top: props.$top || '0',
-// 			transform: props.$transform || 'translate3d(0px, 0px, 0px)',
-// 			opacity: props.$opacity || '0',
-// 			transition: props.$transition || 'none',
-// 		}
-// 	}))`
-// 	position: absolute;
-// 	left: 0;
-// 	top: 0;
-
-// 	${ ({$graphictype}) => $graphictype === 'windows' && windowsGraphicStyles }
-
-// 	${ ({$graphictype}) => $graphictype === 'stars' && starsGraphicStyles }
-	
-// `;
-
 const enableMoveStarAnimation = css`
 	animation-name: ${moveStarAnimation};
 `;
@@ -61,7 +42,6 @@ export const StarEl = styled.div`
 	left: 0;
 	top: 0;
 	opacity: 0;
-	// animation-name: ${moveStarAnimation};
 	animation-timing-function: linear;
 	animation-duration: 10s;
 	animation-delay: 1s;
