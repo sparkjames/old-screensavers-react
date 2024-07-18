@@ -48,6 +48,7 @@ export const Star = () => {
 	const [opacity, setOpacity] = useState('0');
 	const [transition, setTransition] = useState('none');
 	const [color, setColor] = useState(getRandom16Color());
+	const [runAnimation, setRunAnimation] = useState(false);
 	// const [zIndex, setZIndex] = useState('1');
 	// TODO
 	// Figure out a way to set the zIndex on the fly based on the timing, to see which star is in front.
@@ -57,10 +58,17 @@ export const Star = () => {
 	const resetStarPosition = () => {
 		setLeft(`${initX()}px`);
 		setTop(`${initY()}px`);
-		setTransform('translate3d(0px, 0px, 0px)');
-		setOpacity('0')
-		setTransition('none');
+		// setTransform('translate3d(0px, 0px, 0px)');
+		// setOpacity('0')
+		// setTransition('none');
 		setColor(getRandom16Color());
+// console.log('starRef = ', starRef);
+		starRef.current.style.left = `${initX()}px`;
+		starRef.current.style.top = `${initY()}px`;
+
+		// starRef.current.style.animationPlayState = 'unset';
+		// starRef.current.style.animationDuration = '0s';
+		setRunAnimation(false);
 
 		// Get a random number of miliseconds to delay triggering the movement on this star.
 		let star_appear_timeout = getRandomIntInclusive(10, 4000);
@@ -79,14 +87,18 @@ export const Star = () => {
 		const transition_min = 7 * multiplier;
 		const transition_max = 30 * multiplier;
 		const transition_seconds = getRandomIntInclusive(transition_min, transition_max);
-		const new_transition = `transform ${transition_seconds}s linear, opacity ${transition_seconds / 2}s linear`;
-		setTransition(new_transition);
+		// const new_transition = `transform ${transition_seconds}s linear, opacity ${transition_seconds / 2}s linear`;
+		// setTransition(new_transition);
+		starRef.current.style.animationDuration = `${transition_seconds}s`;
 
 		// Replace the Z transform value and set the opacity to triger the transition animation.
-		const new_transform = `translate3d(0px, 0px, ${star_z_distance})`;
-		const new_opacity = '1';
-		setTransform(new_transform);
-		setOpacity(new_opacity);
+		// const new_transform = `translate3d(0px, 0px, ${star_z_distance})`;
+		// const new_opacity = '1';
+		// setTransform(new_transform);
+		// setOpacity(new_opacity);
+
+		// starRef.current.style.animationPlayState = 'running';
+		setRunAnimation(true);
 
 		// Reset the star position after a timeout that is delayed for the same time as the above transition.
 		clearTimeout(timeoutRef.current);
@@ -112,14 +124,10 @@ export const Star = () => {
 	}, []);
 
 	return (
-		<StarEl 
-			$left={left} 
-			$top={top} 
-			$transform={transform} 
-			$opacity={opacity} 
-			$transition={transition}
+		<StarEl
 			$color={color}
 			$graphictype={graphicType}
+			$runAnimation={runAnimation}
 			ref={starRef}
 		>
 			{ graphicType === 'windows' &&
