@@ -1,26 +1,11 @@
-import './controls.component.scss';
-import { GraphicTypeContext } from '../../contexts/graphicType.context';
-import { WarpSpeedContext } from '../../contexts/warpSpeed.context';
+import './controls.styles.scss';
 import { useContext } from 'react';
+import { WarpSpeedContext } from '../../contexts/warpSpeed.context';
+import { ControlGroupGraphic } from '../control-group-graphic/control-group-graphic.component';
 
 export const Controls = () => {
 
-	const { graphicType, setGraphicType } = useContext(GraphicTypeContext);
 	const { setWarpSpeed } = useContext(WarpSpeedContext);
-
-	const graphicTypeOnChange = (e) => {
-		// console.log( 'graphicTypeOnChange()');
-    // console.log( e.target.value );
-
-    const allowedGraphicTypes = [
-      'windows',
-      'stars',
-    ];
-
-    if ( allowedGraphicTypes.indexOf(e.target.value) >= 0 ){
-      setGraphicType( e.target.value );
-    }
-	};
 
 	const warpSpeedOnChange = (e) => {
 		setWarpSpeed( parseInt( e.target.value ) );
@@ -31,19 +16,7 @@ export const Controls = () => {
 		<div className="controls">
         <h1 className="controls-title">Screensaver Setup</h1>
 
-        <div className="controls-group controls-group--graphic">
-          <h2 className="controls-heading">Graphic</h2>
-
-          <ul className="controls-list">
-            <li className="controls-list-item">
-              <label htmlFor="graphic-windows"><input type="radio" className="controls-radio controls-radio--graphic" name="graphic" id="graphic-windows" value="windows" defaultChecked={graphicType==='windows'} onChange={graphicTypeOnChange} />Windows</label>
-            </li>
-            <li className="controls-list-item">
-              <label htmlFor="graphic-stars"><input type="radio" className="controls-radio controls-radio--graphic" name="graphic" id="graphic-stars" value="stars" defaultChecked={graphicType==='stars'} onChange={graphicTypeOnChange} />Stars</label>
-            </li>
-          </ul>
-          
-        </div>
+        <ControlGroupGraphic></ControlGroupGraphic>
 
         <div className="controls-group controls-group--quantity">
           <h2 className="controls-heading">Warp Speed</h2>
