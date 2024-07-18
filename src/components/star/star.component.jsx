@@ -44,7 +44,7 @@ export const Star = () => {
 
 	const [color, setColor] = useState(getRandom16Color());
 	const [runAnimation, setRunAnimation] = useState(false);
-	// const [zIndex, setZIndex] = useState('1');
+	
 	// TODO
 	// Figure out a way to set the zIndex on the fly based on the timing, to see which star is in front.
 	
