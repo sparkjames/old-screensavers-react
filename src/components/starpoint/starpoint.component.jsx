@@ -1,21 +1,23 @@
 import './starpoint.styles.scss';
 
+import { useEffect, useState, useContext } from 'react';
 import { Star } from '../star/star.component';
-import { useEffect, useState } from 'react';
+import { QuantityContext } from '../../contexts/quantity.context';
 
-export const Starpoint = ( {starCount} ) => {
+export const Starpoint = () => {
 
 	const [stars, setStars] = useState([]);
+	const { quantity } = useContext(QuantityContext);
 
 	useEffect( () => {
 		const newStars = [];
-		for( let i=0; i<starCount; i++ ){
+		for( let i=0; i<quantity; i++ ){
 			newStars.push(
 				<Star key={i}></Star>
 			);
 		}
 		setStars( newStars );
-	}, [starCount]);
+	}, [quantity]);
 
 	return (
 		<div className="starpoint">

@@ -7,7 +7,7 @@ export const QuantityContext = createContext({
 
 export const QuantityProvider = ({children}) => {
 
-	const [quantity, setQuantity] = useState(70);
+	const [quantity, setQuantity] = useState(100);
 
 	const value = { quantity, setQuantity };
 

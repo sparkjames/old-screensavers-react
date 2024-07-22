@@ -6,15 +6,18 @@ import reportWebVitals from './reportWebVitals';
 
 import { GraphicTypeProvider } from './contexts/graphicType.context';
 import { WarpSpeedProvider } from './contexts/warpSpeed.context';
+import { QuantityProvider } from './contexts/quantity.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <GraphicTypeProvider>
-      <WarpSpeedProvider>
-        <App />
-      </WarpSpeedProvider>
-    </GraphicTypeProvider>
+    <QuantityProvider>
+      <GraphicTypeProvider>
+        <WarpSpeedProvider>
+          <App />
+        </WarpSpeedProvider>
+      </GraphicTypeProvider>
+    </QuantityProvider>
   </React.StrictMode>
 );
 
