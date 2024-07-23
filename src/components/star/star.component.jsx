@@ -7,6 +7,7 @@ import { ReactComponent as WindowsSVG } from '../../assets/windows311.svg';
 
 import { GraphicTypeContext } from '../../contexts/graphicType.context';
 import { WarpSpeedContext } from '../../contexts/warpSpeed.context';
+import { QuantityContext } from '../../contexts/quantity.context';
 
 // const perspective = '15in'; // The perspective distance (for CSS).
 // const star_z_distance = '16in'; // The distance for the stars to move (for CSS).
@@ -39,6 +40,7 @@ export const Star = () => {
 
 	const { graphicType } = useContext(GraphicTypeContext);
 	const { warpSpeed } = useContext(WarpSpeedContext);
+	const { quantity } = useContext(QuantityContext);
 
 	const starRef = useRef(null);
 
@@ -52,8 +54,11 @@ export const Star = () => {
 
 	const resetStarPosition = () => {
 		setColor(getRandom16Color());
-		starRef.current.style.left = `${initX()}px`;
-		starRef.current.style.top = `${initY()}px`;
+
+		if ( starRef.current ) {
+			starRef.current.style.left = `${initX()}px`;
+			starRef.current.style.top = `${initY()}px`;
+		}
 
 		setRunAnimation(false);
 
@@ -73,7 +78,9 @@ export const Star = () => {
 		const transition_max = 30 * multiplier;
 		const transition_seconds = getRandomIntInclusive(transition_min, transition_max);
 
-		starRef.current.style.animationDuration = `${transition_seconds}s`;
+		if ( starRef.current ) {
+			starRef.current.style.animationDuration = `${transition_seconds}s`;
+		}
 
 		// Triger the animation.
 		setRunAnimation(true);
@@ -86,8 +93,9 @@ export const Star = () => {
 
 	useEffect( () => {
 		// console.log('new warp speed = ', warpSpeed);
+		clearTimeout(timeoutRef.current);
 		moveStar();
-	}, [warpSpeed]);
+	}, [warpSpeed, quantity]);
 
 	useEffect( () => {
 		clearTimeout(timeoutRef.current);

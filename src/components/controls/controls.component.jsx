@@ -1,10 +1,9 @@
 import './controls.styles.scss';
 import { ControlGroupGraphic } from '../control-group-graphic/control-group-graphic.component';
 import ControlGroupWarpSpeed from '../control-group-warpspeed/control-group-warpspeed.component';
+import ControlGroupQuantity from '../control-group-quantity/control-group-quantity.component';
 
 export const Controls = () => {
-
-	
 
 	return (
 		<div className="controls">
@@ -13,6 +12,8 @@ export const Controls = () => {
         <ControlGroupGraphic></ControlGroupGraphic>
 
         <ControlGroupWarpSpeed></ControlGroupWarpSpeed>
+
+        <ControlGroupQuantity></ControlGroupQuantity>
         
       </div>
 	);
