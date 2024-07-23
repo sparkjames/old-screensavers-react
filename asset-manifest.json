@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/sparkjames/old-screensavers-react/static/css/main.2a5e560a.css",
+    "main.js": "/sparkjames/old-screensavers-react/static/js/main.229261b7.js",
+    "static/js/453.a057319c.chunk.js": "/sparkjames/old-screensavers-react/static/js/453.a057319c.chunk.js",
+    "static/media/windows311.svg": "/sparkjames/old-screensavers-react/static/media/windows311.a40350ece77d29e9f5d9307d96ebedd7.svg",
+    "index.html": "/sparkjames/old-screensavers-react/index.html",
+    "main.2a5e560a.css.map": "/sparkjames/old-screensavers-react/static/css/main.2a5e560a.css.map",
+    "main.229261b7.js.map": "/sparkjames/old-screensavers-react/static/js/main.229261b7.js.map",
+    "453.a057319c.chunk.js.map": "/sparkjames/old-screensavers-react/static/js/453.a057319c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2a5e560a.css",
+    "static/js/main.229261b7.js"
+  ]
+}
