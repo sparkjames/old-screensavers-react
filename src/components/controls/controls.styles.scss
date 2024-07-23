@@ -6,6 +6,9 @@
 	left: 50%;
 	transform: translateX(-50%);
 	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 10px;
 }
 
 .controls-title {
@@ -18,12 +21,16 @@
 	padding: .5rem;
 	text-align: center;
 	width: 100%;
+	grid-column-start: 1;
+	grid-column-end: 5;
 }
 
 .controls-group {
 	border: 1px solid black;
 	margin: 1rem;
 	padding: .5rem;
+	grid-column-start: 1;
+	grid-column-end: 5;
 }
 
 .controls-heading {

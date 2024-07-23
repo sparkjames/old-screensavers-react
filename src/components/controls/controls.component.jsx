@@ -11,9 +11,9 @@ export const Controls = () => {
 
         <ControlGroupGraphic></ControlGroupGraphic>
 
-        <ControlGroupWarpSpeed></ControlGroupWarpSpeed>
+<ControlGroupQuantity></ControlGroupQuantity>
 
-        <ControlGroupQuantity></ControlGroupQuantity>
+        <ControlGroupWarpSpeed></ControlGroupWarpSpeed>
         
       </div>
 	);
