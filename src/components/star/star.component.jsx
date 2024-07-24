@@ -49,7 +49,6 @@ export const Star = () => {
 	const { warpSpeed } = useContext(WarpSpeedContext);
 	const { quantity } = useContext(QuantityContext);
 
-	const starRef = useRef(null);
 	const timeoutRef = useRef(0);
 
 	const [runAnimation, setRunAnimation] = useState(false);
@@ -103,7 +102,6 @@ export const Star = () => {
 			$graphictype={graphicType}
 			$runAnimation={runAnimation}
 			$starStyles={starStyles}
-			ref={starRef}
 		>
 			{ graphicType === 'windows' &&
 			<WindowsSVG></WindowsSVG>
