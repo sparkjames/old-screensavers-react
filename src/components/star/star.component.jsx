@@ -7,7 +7,6 @@ import { ReactComponent as WindowsSVG } from '../../assets/windows311.svg';
 
 import { GraphicTypeContext } from '../../contexts/graphicType.context';
 import { WarpSpeedContext } from '../../contexts/warpSpeed.context';
-import { QuantityContext } from '../../contexts/quantity.context';
 
 // const perspective = '15in'; // The perspective distance (for CSS).
 // const star_z_distance = '16in'; // The distance for the stars to move (for CSS).
@@ -47,7 +46,6 @@ export const Star = () => {
 
 	const { graphicType } = useContext(GraphicTypeContext);
 	const { warpSpeed } = useContext(WarpSpeedContext);
-	const { quantity } = useContext(QuantityContext);
 
 	const timeoutRef = useRef(0);
 
