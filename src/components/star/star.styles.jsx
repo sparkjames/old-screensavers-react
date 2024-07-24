@@ -41,8 +41,8 @@ export const StarEl = styled.div.attrs(props => ({
 	style: {
 		left: props.$starStyles.left || '0px',
 		top: props.$starStyles.top || '0px',
-		animationDuration: props.$starStyles.animationDuration || '30s',
-		animationDelay: props.$starStyles.animationDelay || '1000ms',
+		animationDuration: props.$starStyles.animationDuration ? `${props.$starStyles.animationDuration}s` : '30s',
+		animationDelay: props.$starStyles.animationDelay ? `${props.$starStyles.animationDelay}ms` : '1000ms',
 	},
 }))`
 	position: absolute;
