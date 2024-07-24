@@ -90,8 +90,9 @@ export const Star = () => {
 	useEffect( moveStar, [warpSpeed, quantity]);
 
 	useEffect( () => {
-		console.log('run once per star');
+		// console.log('run once per star');
 		timeoutRef.current = setTimeout( resetStarPosition, getRandomDuration() * 1000);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
