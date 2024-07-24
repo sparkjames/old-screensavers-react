@@ -5,7 +5,7 @@ const windowsGraphicStyles = css`
 	width: 71px;
 
 	path {
-		fill: ${props => props.$color || '#f0f'};
+		fill: ${props => props.$starStyles.fill || '#f0f'};
 	}
 `;
 
@@ -37,17 +37,20 @@ const enableMoveStarAnimation = css`
 	animation-name: ${moveStarAnimation};
 `;
 
-export const StarEl = styled.div`
+export const StarEl = styled.div.attrs(props => ({
+	style: {
+		left: props => props.$starStyles.left || '0px',
+		top: props => props.$starStyles.top || '0px',
+		animationDuration: props => props.$starStyles.animationDuration || '10s',
+	},
+}))`
 	position: absolute;
-	left: 0;
-	top: 0;
 	opacity: 0;
-	animation-timing-function: linear;
-	animation-duration: 10s;
 	animation-delay: 1s;
 	animation-fill-mode: revert-layer;
 	animation-iteration-count: 1;
 	animation-play-state: running;
+	animation-timing-function: linear;
 
 	${ ({$runAnimation}) => $runAnimation && enableMoveStarAnimation }
 

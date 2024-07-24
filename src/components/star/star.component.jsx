@@ -36,6 +36,13 @@ function initY(){
 	return y;
 }
 
+function getRandomDuration( warpSpeed = 1 ){
+	const multiplier = parseInt( warpSpeed ) * .01;
+	const animation_min = 7 * multiplier;
+	const animation_max = 30 * multiplier;
+	return getRandomIntInclusive(animation_min, animation_max);
+}
+
 export const Star = () => {
 
 	const { graphicType } = useContext(GraphicTypeContext);
@@ -43,70 +50,55 @@ export const Star = () => {
 	const { quantity } = useContext(QuantityContext);
 
 	const starRef = useRef(null);
+	const timeoutRef = useRef(0);
 
-	const [color, setColor] = useState(getRandom16Color());
 	const [runAnimation, setRunAnimation] = useState(false);
+	const [starStyles, setStarStyles] = useState({
+		'animationDuration': `${getRandomDuration()}s`,
+		'left': `${initX()}px`,
+		'top': `${initY()}px`,
+		'fill': getRandom16Color(),
+	});
 	
 	// TODO
 	// Figure out a way to set the zIndex on the fly based on the timing, to see which star is in front.
-	
-	const timeoutRef = useRef(0);
 
 	const resetStarPosition = () => {
-		setColor(getRandom16Color());
-
-		if ( starRef.current ) {
-			starRef.current.style.left = `${initX()}px`;
-			starRef.current.style.top = `${initY()}px`;
-		}
+		const newStarStyles = {
+			'animationDuration': `${getRandomDuration()}s`,
+			'left': `${initX()}px`,
+			'top': `${initY()}px`,
+			'fill': getRandom16Color(),
+		};
 
 		setRunAnimation(false);
+		setStarStyles(newStarStyles);
 
-		// Get a random number of miliseconds to delay triggering the movement on this star.
-		let star_appear_timeout = getRandomIntInclusive(10, 4000);
-
-		// Move the star after the random delay.
 		clearTimeout(timeoutRef.current);
-		timeoutRef.current = setTimeout( moveStar, star_appear_timeout);
-
+		timeoutRef.current = setTimeout( moveStar, getRandomIntInclusive(10, 4000));
 	};
 
 	const moveStar = () => {
-		// Set a random time (in seconds) for the transition, so some stars will be fast and others slow.
-		const multiplier = parseInt( warpSpeed ) * .01;
-		const transition_min = 7 * multiplier;
-		const transition_max = 30 * multiplier;
-		const transition_seconds = getRandomIntInclusive(transition_min, transition_max);
-
-		if ( starRef.current ) {
-			starRef.current.style.animationDuration = `${transition_seconds}s`;
-		}
-
 		// Triger the animation.
 		setRunAnimation(true);
 
 		// Reset the star position after a timeout that is delayed for the same time as the above transition.
 		clearTimeout(timeoutRef.current);
-		timeoutRef.current = setTimeout( resetStarPosition, transition_seconds*1000 );
-
+		timeoutRef.current = setTimeout( resetStarPosition, getRandomDuration() * 1000);
 	};
 
-	useEffect( () => {
-		// console.log('new warp speed = ', warpSpeed);
-		clearTimeout(timeoutRef.current);
-		moveStar();
-	}, [warpSpeed, quantity]);
+	useEffect( moveStar, [warpSpeed, quantity]);
 
 	useEffect( () => {
-		clearTimeout(timeoutRef.current);
-		timeoutRef.current = setTimeout( resetStarPosition, 1000 );
+		console.log('run once per star');
+		timeoutRef.current = setTimeout( resetStarPosition, getRandomDuration() * 1000);
 	}, []);
 
 	return (
 		<StarEl
-			$color={color}
 			$graphictype={graphicType}
 			$runAnimation={runAnimation}
+			$starStyles={starStyles}
 			ref={starRef}
 		>
 			{ graphicType === 'windows' &&
