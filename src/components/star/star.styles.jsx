@@ -39,14 +39,14 @@ const enableMoveStarAnimation = css`
 
 export const StarEl = styled.div.attrs(props => ({
 	style: {
-		left: props => props.$starStyles.left || '0px',
-		top: props => props.$starStyles.top || '0px',
-		animationDuration: props => props.$starStyles.animationDuration || '10s',
+		left: props.$starStyles.left || '0px',
+		top: props.$starStyles.top || '0px',
+		animationDuration: props.$starStyles.animationDuration || '30s',
+		animationDelay: props.$starStyles.animationDelay || '1000ms',
 	},
 }))`
 	position: absolute;
 	opacity: 0;
-	animation-delay: 1s;
 	animation-fill-mode: revert-layer;
 	animation-iteration-count: 1;
 	animation-play-state: running;

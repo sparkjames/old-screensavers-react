@@ -55,6 +55,7 @@ export const Star = () => {
 	const [runAnimation, setRunAnimation] = useState(false);
 	const [starStyles, setStarStyles] = useState({
 		'animationDuration': `${getRandomDuration()}s`,
+		'animationDelay': `${getRandomIntInclusive(500, 4000)}ms`,
 		'left': `${initX()}px`,
 		'top': `${initY()}px`,
 		'fill': getRandom16Color(),
@@ -65,7 +66,8 @@ export const Star = () => {
 
 	const resetStarPosition = () => {
 		const newStarStyles = {
-			'animationDuration': `${getRandomDuration()}s`,
+			'animationDuration': `${getRandomDuration(warpSpeed)}s`,
+			'animationDelay': `${getRandomIntInclusive(500, 4000)}ms`,
 			'left': `${initX()}px`,
 			'top': `${initY()}px`,
 			'fill': getRandom16Color(),
@@ -74,8 +76,8 @@ export const Star = () => {
 		setRunAnimation(false);
 		setStarStyles(newStarStyles);
 
-		clearTimeout(timeoutRef.current);
-		timeoutRef.current = setTimeout( moveStar, getRandomIntInclusive(10, 4000));
+		// clearTimeout(timeoutRef.current);
+		// timeoutRef.current = setTimeout( moveStar, getRandomIntInclusive(10, 4000));
 	};
 
 	const moveStar = () => {
@@ -87,13 +89,13 @@ export const Star = () => {
 		timeoutRef.current = setTimeout( resetStarPosition, getRandomDuration() * 1000);
 	};
 
-	useEffect( () => {
-		moveStar();
-	}, [warpSpeed, quantity]);
+	// useEffect( () => {
+	// 	moveStar();
+	// }, [warpSpeed, quantity]);
 
 	useEffect( () => {
 		// console.log('run once per star');
-		timeoutRef.current = setTimeout( resetStarPosition, getRandomDuration() * 1000);
+		// timeoutRef.current = setTimeout( resetStarPosition, getRandomDuration() * 1000);
 	}, []);
 
 	return (
