@@ -48,18 +48,6 @@ export const Star = () => {
 	const { warpSpeed } = useContext(WarpSpeedContext);
 
 	const starRef = useRef(null);
-	const firstRun = useRef(true);
-
-	const [runAnimation, setRunAnimation] = useState(null);
-
-	// function resetAnimation() {
-	// 	if ( starRef.current ) {
-	// 		starRef.current.style.animation = 'none';
-	// 		// eslint-disable-next-line no-unused-expressions
-	// 		starRef.current.offsetHeight; // trigger reflow
-	// 		starRef.current.style.animation = null; 
-	// 	}
-	// }
 
 	const getStarStyleDefaults = (warpSpeed=70) => {
 		const animationDuration = getRandomDuration(warpSpeed);
@@ -67,86 +55,36 @@ export const Star = () => {
 		return {
 			'animationDuration': animationDuration,
 			'animationDelay': animationDelay,
-			'animationTotal': (animationDuration * 1000) + animationDelay,
 			'left': `${initX()}px`,
 			'top': `${initY()}px`,
 			'fill': getRandom16Color(),
 		};
 	}
 	const [starStyles, setStarStyles] = useState(getStarStyleDefaults());
-
-	const onAnimationEnd = (e) => {
-		console.log('animation ended...');
-		console.log(e);
-		e.target.cancel();
-		setStarStyles( getStarStyleDefaults(warpSpeed) );
-		e.target.play();
-	};
 	
 	// TODO
 	// Figure out a way to set the zIndex on the fly based on the timing, to see which star is in front.
 
 	useEffect( () => {
-		console.log('run once per star, animationTotal = ', starStyles.animationTotal);
-		setRunAnimation(starStyles.animationTotal);
 
-		// const timeout = setTimeout( () => {
-		// 	// console.log('==========');
-		// 	// console.log('OHAI');
-		// 	// console.log('==========');
-		// 	console.log('initial timeout running, setting runAnimation to 0');
-		// 	setRunAnimation(0);
-		// 	firstRun.current = false;
-		// 	// setStarStyles( getStarStyleDefaults() );
-		// }, starStyles.animationTotal);
+		const onAnimationEnd = (e) => {
+			// console.log('animation ended, cancel the animation, reset properties, and start animation again...');
+			// console.log(e);
+			
+			e.target.cancel();
+			setStarStyles( getStarStyleDefaults(warpSpeed) );
+			e.target.play();
+		};
 
 		starRef.current.getAnimations().forEach((anim) => {
-			console.log('anim = ', anim);
-			// anim.cancel();
-			// anim.play();
 			anim.addEventListener( 'finish', onAnimationEnd );
 		});
 
-		// starRef.current.addEventListener( "animationend",  onAnimationEnd );
-
-		// return () => clearTimeout(timeout);
-	}, []);
-
-	useEffect( () => {
-		console.log('starStyles updated ', starStyles );
-		console.log('firstRun.current = ', firstRun.current );
-
-		// let timeout = null;
-
-		// if ( firstRun.current === false ) {
-		// 	console.log('reset animation');
-		// 	// resetAnimation();
-
-		// 	clearTimeout(timeout);
-		// 	timeout = setTimeout( () => {
-		// 		console.log('In new timeout, set runAnimation to 0');
-		// 		setRunAnimation(0);
-		// 	}, starStyles.animationTotal);
-		// }
-
-		// return () => clearTimeout(timeout);
-	}, [starStyles]);
-
-	// useEffect( () => {
-	// 	console.log('runAnimation updated ', runAnimation );
-	// 	// console.log('starStyles updated ', starStyles );
-
-	// 	if ( runAnimation === 0 ) {
-	// 		console.log('runAnimation === 0, now set animationTotal to new number and/or reset the star position/animation');
-	// 		// setRunAnimation(starStyles.animationTotal);
-	// 		setStarStyles( getStarStyleDefaults(warpSpeed) );
-	// 	}
-	// }, [runAnimation, warpSpeed]);
+	}, [warpSpeed]);
 
 	return (
 		<StarEl
 			$graphictype={graphicType}
-			$runAnimation={runAnimation}
 			$starStyles={starStyles}
 			ref={starRef}
 		>

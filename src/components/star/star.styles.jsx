@@ -59,5 +59,3 @@ export const StarEl = styled.div.attrs(props => ({
 	${ ({$graphictype}) => $graphictype === 'stars' && starsGraphicStyles }
 
 `;
-
-	// ${ ({$runAnimation}) => $runAnimation > 0 && enableMoveStarAnimation }
