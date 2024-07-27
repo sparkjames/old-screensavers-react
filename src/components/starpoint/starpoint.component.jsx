@@ -11,7 +11,7 @@ export const Starpoint = () => {
 
 	useEffect( () => {
 		const newStars = [];
-		for( let i=0; i<quantity; i++ ){
+		for( let i=0; i<1; i++ ){
 			newStars.push(
 				<Star key={i}></Star>
 			);

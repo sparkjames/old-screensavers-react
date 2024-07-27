@@ -47,15 +47,17 @@ export const StarEl = styled.div.attrs(props => ({
 }))`
 	position: absolute;
 	opacity: 0;
-	animation-fill-mode: revert-layer;
+	animation-fill-mode: initial;
 	animation-iteration-count: 1;
+	animation-name: ${moveStarAnimation};
 	animation-play-state: running;
 	animation-timing-function: linear;
 
-	${ ({$runAnimation}) => $runAnimation && enableMoveStarAnimation }
 
 	${ ({$graphictype}) => $graphictype === 'windows' && windowsGraphicStyles }
 
 	${ ({$graphictype}) => $graphictype === 'stars' && starsGraphicStyles }
 
 `;
+
+	// ${ ({$runAnimation}) => $runAnimation > 0 && enableMoveStarAnimation }

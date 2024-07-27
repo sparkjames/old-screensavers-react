@@ -47,90 +47,108 @@ export const Star = () => {
 	const { graphicType } = useContext(GraphicTypeContext);
 	const { warpSpeed } = useContext(WarpSpeedContext);
 
-	const timeoutRef = useRef(0);
-	const intervalRef = useRef(0);
+	const starRef = useRef(null);
+	const firstRun = useRef(true);
 
-	const [runAnimation, setRunAnimation] = useState(0);
+	const [runAnimation, setRunAnimation] = useState(null);
 
-	function getStarStyleDefaults() {
+	// function resetAnimation() {
+	// 	if ( starRef.current ) {
+	// 		starRef.current.style.animation = 'none';
+	// 		// eslint-disable-next-line no-unused-expressions
+	// 		starRef.current.offsetHeight; // trigger reflow
+	// 		starRef.current.style.animation = null; 
+	// 	}
+	// }
+
+	const getStarStyleDefaults = (warpSpeed=70) => {
+		const animationDuration = getRandomDuration(warpSpeed);
+		const animationDelay = getRandomIntInclusive(500, 4000);
 		return {
-			'animationDuration': getRandomDuration(warpSpeed),
-			'animationDelay': getRandomIntInclusive(500, 4000),
+			'animationDuration': animationDuration,
+			'animationDelay': animationDelay,
+			'animationTotal': (animationDuration * 1000) + animationDelay,
 			'left': `${initX()}px`,
 			'top': `${initY()}px`,
 			'fill': getRandom16Color(),
 		};
 	}
 	const [starStyles, setStarStyles] = useState(getStarStyleDefaults());
+
+	const onAnimationEnd = (e) => {
+		console.log('animation ended...');
+		console.log(e);
+		e.target.cancel();
+		setStarStyles( getStarStyleDefaults(warpSpeed) );
+		e.target.play();
+	};
 	
 	// TODO
 	// Figure out a way to set the zIndex on the fly based on the timing, to see which star is in front.
 
-	// const resetStarPosition = () => {
-	// 	setRunAnimation(0);
-		
-	// 	const newStarStyles = getStarStyleDefaults();
-	// 	setStarStyles(newStarStyles);
-
-	// 	timeoutRef.current = setTimeout( moveStar, getRandomIntInclusive(10, 4000));
-
-	// 	return () => {
-	// 		clearTimeout(timeoutRef.current);
-	// 	}
-	// };
-
-	// const moveStar = () => {
-
-	// 	// Reset the star position after a timeout that is delayed for the same time as the above transition.
-	// 	const newAnimationTime = (starStyles.animationDuration * 1000) + starStyles.animationDelay;
-
-	// 	// Triger the animation.
-	// 	setRunAnimation(newAnimationTime);
-
-	// 	timeoutRef.current = setTimeout( resetStarPosition, newAnimationTime);
-
-	// 	return () => {
-	// 		clearTimeout(timeoutRef.current);
-	// 	}
-	// };
-
-	// useEffect( () => {
-	// 	moveStar();
-	// }, [warpSpeed, moveStar]);
-
 	useEffect( () => {
-		console.log('run once per star');
-		const newAnimationTime = (starStyles.animationDuration * 1000) + starStyles.animationDelay;
-		setRunAnimation(newAnimationTime);
+		console.log('run once per star, animationTotal = ', starStyles.animationTotal);
+		setRunAnimation(starStyles.animationTotal);
 
-		timeoutRef.current = setTimeout( () => {
-			setRunAnimation(0);
-			setStarStyles( getStarStyleDefaults() );
-		}, newAnimationTime);
-		// resetStarPosition();
+		// const timeout = setTimeout( () => {
+		// 	// console.log('==========');
+		// 	// console.log('OHAI');
+		// 	// console.log('==========');
+		// 	console.log('initial timeout running, setting runAnimation to 0');
+		// 	setRunAnimation(0);
+		// 	firstRun.current = false;
+		// 	// setStarStyles( getStarStyleDefaults() );
+		// }, starStyles.animationTotal);
 
-		return () => clearTimeout(timeoutRef.current);
+		starRef.current.getAnimations().forEach((anim) => {
+			console.log('anim = ', anim);
+			// anim.cancel();
+			// anim.play();
+			anim.addEventListener( 'finish', onAnimationEnd );
+		});
+
+		// starRef.current.addEventListener( "animationend",  onAnimationEnd );
+
+		// return () => clearTimeout(timeout);
 	}, []);
 
 	useEffect( () => {
-		if ( runAnimation === 0 ) {
-			const newAnimationTime = (starStyles.animationDuration * 1000) + starStyles.animationDelay;
-			setRunAnimation(newAnimationTime);
+		console.log('starStyles updated ', starStyles );
+		console.log('firstRun.current = ', firstRun.current );
 
-			timeoutRef.current = setTimeout( () => {
-				setRunAnimation(0);
-				setStarStyles( getStarStyleDefaults() );
-			}, newAnimationTime);
-		}
+		// let timeout = null;
 
-		return () => clearTimeout(timeoutRef.current);
-	}, [runAnimation]);
+		// if ( firstRun.current === false ) {
+		// 	console.log('reset animation');
+		// 	// resetAnimation();
+
+		// 	clearTimeout(timeout);
+		// 	timeout = setTimeout( () => {
+		// 		console.log('In new timeout, set runAnimation to 0');
+		// 		setRunAnimation(0);
+		// 	}, starStyles.animationTotal);
+		// }
+
+		// return () => clearTimeout(timeout);
+	}, [starStyles]);
+
+	// useEffect( () => {
+	// 	console.log('runAnimation updated ', runAnimation );
+	// 	// console.log('starStyles updated ', starStyles );
+
+	// 	if ( runAnimation === 0 ) {
+	// 		console.log('runAnimation === 0, now set animationTotal to new number and/or reset the star position/animation');
+	// 		// setRunAnimation(starStyles.animationTotal);
+	// 		setStarStyles( getStarStyleDefaults(warpSpeed) );
+	// 	}
+	// }, [runAnimation, warpSpeed]);
 
 	return (
 		<StarEl
 			$graphictype={graphicType}
 			$runAnimation={runAnimation}
 			$starStyles={starStyles}
+			ref={starRef}
 		>
 			{ graphicType === 'windows' &&
 			<WindowsSVG></WindowsSVG>
