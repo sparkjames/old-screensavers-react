@@ -33,10 +33,6 @@ const moveStarAnimation = keyframes`
 	}
 `;
 
-const enableMoveStarAnimation = css`
-	animation-name: ${moveStarAnimation};
-`;
-
 export const StarEl = styled.div.attrs(props => ({
 	style: {
 		left: props.$starStyles.left || '0px',
