@@ -9,7 +9,7 @@ export const ControlGroupWarpSpeed = () => {
 
 	const warpSpeedOnChange = (e) => {
 		setWarpSpeed( parseInt( e.target.value ) );
-		console.log('setting warpSpeed value to ', parseInt( e.target.value ));
+		// console.log('setting warpSpeed value to ', parseInt( e.target.value ));
 	};
 
 	return (
