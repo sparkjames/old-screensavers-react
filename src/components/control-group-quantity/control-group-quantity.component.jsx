@@ -17,7 +17,7 @@ export const ControlGroupQuantity = () => {
 			<h2 className="controls-heading">Quantity</h2>
 
 			<div className="controls-number-container">
-				<label className="controls-number-label" htmlFor="controls-number--quantity">Quantity</label>
+				{/* <label className="controls-number-label" htmlFor="controls-number--quantity">Quantity</label> */}
 				<input type="number" min="10" max="250" defaultValue="100" className="controls-number controls-number--quantity" id="controls-number--quantity" onChange={quantityOnChange} />
 			</div>
 		</div>

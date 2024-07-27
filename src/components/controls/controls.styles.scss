@@ -1,33 +1,64 @@
 .controls {
-	background-color: lightgray;
+	background-color: #ccc;
+	border: 2px groove #ccc;
+	box-shadow: inset 0 0 0 2px #000;
 	max-width: 640px;
 	position: absolute;
 	bottom: 5vh;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	gap: 10px;
-	opacity: 0.5;
+	// opacity: 0.5;
+}
+
+.controls-titleBar {
+	background-color: blue;
+	border: 2px groove #ccc;
+	box-shadow: inset 0 0 0 2px #000;
+	display: flex;
+	width: 100%;
+}
+
+.controls-titleBarClose {
+	background-color: #ccc;
+	color: #555;
+	cursor: pointer;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0 0 1px #000;
+	height: 100%;
+	overflow: hidden;
+	text-indent: -9999px;
+	width: 34px;
+}
+
+.controls-titleBarCloseBar {
+	display: inline-block;
+	background-color: #666;
+	height: 4px;
+	border: 1px solid #000;
+	width: 28px;
 }
 
 .controls-title {
-	background-color: blue;
-	border: 2px solid black;
-	border-top-color: white;
-	border-right-color: white;
-	color: white;
+	color: #fff;
 	font-weight: bold;
 	padding: .5rem;
 	text-align: center;
 	width: 100%;
-	grid-column-start: 1;
-	grid-column-end: 5;
+}
+
+.controls-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 10px;
 }
 
 .controls-group {
-	border: 1px solid black;
+	border: 1px solid #000;
 	margin: 1rem;
 	padding: .5rem;
 	grid-column-start: 1;
