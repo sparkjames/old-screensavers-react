@@ -35,12 +35,12 @@ function initY(){
 	return y;
 }
 
-function getRandomDuration( warpSpeed = 70 ){
-	const multiplier = parseInt( warpSpeed ) * .01;
-	const animation_min = 7 * multiplier;
-	const animation_max = 30 * multiplier;
-	return getRandomIntInclusive(animation_min, animation_max);
-}
+// function getRandomDuration( warpSpeed = 70 ){
+// 	const multiplier = parseInt( warpSpeed ) * .01;
+// 	const animation_min = 7 * multiplier;
+// 	const animation_max = 30 * multiplier;
+// 	return getRandomIntInclusive(animation_min, animation_max);
+// }
 
 export const Star = () => {
 
@@ -49,8 +49,15 @@ export const Star = () => {
 
 	const starRef = useRef(null);
 
-	const getStarStyleDefaults = (warpSpeed=70) => {
-		const animationDuration = getRandomDuration(warpSpeed);
+	const [starStyles, setStarStyles] = useState({});
+
+	const getStarStyleDefaults = ( warpSpeed = 70 ) => {
+		// const animationDuration = getRandomDuration(warpSpeed);
+		const multiplier = parseInt( warpSpeed ) * .01;
+		const animation_min = 7 * multiplier;
+		const animation_max = 30 * multiplier;
+		const animationDuration = getRandomIntInclusive(animation_min, animation_max);
+
 		const animationDelay = getRandomIntInclusive(500, 4000);
 		return {
 			'animationDuration': animationDuration,
@@ -60,19 +67,19 @@ export const Star = () => {
 			'fill': getRandom16Color(),
 		};
 	}
-	const [starStyles, setStarStyles] = useState(getStarStyleDefaults());
 	
 	// TODO
 	// Figure out a way to set the zIndex on the fly based on the timing, to see which star is in front.
 
 	useEffect( () => {
 
+		setStarStyles( getStarStyleDefaults() );
+
 		const onAnimationEnd = (e) => {
 			// console.log('animation ended, cancel the animation, reset properties, and start animation again...');
 			// console.log(e);
 			
 			e.target.cancel();
-			setStarStyles( getStarStyleDefaults(warpSpeed) );
 			e.target.play();
 		};
 
@@ -80,7 +87,23 @@ export const Star = () => {
 			anim.addEventListener( 'finish', onAnimationEnd );
 		});
 
+	}, []);
+
+	useEffect( () => {
+
+		setStarStyles( getStarStyleDefaults(warpSpeed) );
+
+		// starRef.current.getAnimations().forEach((anim) => {
+		// 	anim.finish();
+		// });
+
 	}, [warpSpeed]);
+
+	useEffect( () => {
+		starRef.current.getAnimations().forEach((anim) => {
+			anim.finish();
+		});
+	}, [starStyles]);
 
 	return (
 		<StarEl
