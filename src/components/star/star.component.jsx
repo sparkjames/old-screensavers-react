@@ -35,13 +35,6 @@ function initY(){
 	return y;
 }
 
-// function getRandomDuration( warpSpeed = 70 ){
-// 	const multiplier = parseInt( warpSpeed ) * .01;
-// 	const animation_min = 7 * multiplier;
-// 	const animation_max = 30 * multiplier;
-// 	return getRandomIntInclusive(animation_min, animation_max);
-// }
-
 export const Star = () => {
 
 	const { graphicType } = useContext(GraphicTypeContext);
@@ -51,11 +44,9 @@ export const Star = () => {
 
 	const [starStyles, setStarStyles] = useState({});
 
-	const getStarStyleDefaults = ( warpSpeed = 70 ) => {
-		// const animationDuration = getRandomDuration(warpSpeed);
-		const multiplier = parseInt( warpSpeed ) * .01;
-		const animation_min = 7 * multiplier;
-		const animation_max = 30 * multiplier;
+	const getStarStyleDefaults = () => {
+		const animation_min = 10;
+		const animation_max = 30;
 		const animationDuration = getRandomIntInclusive(animation_min, animation_max);
 
 		const animationDelay = getRandomIntInclusive(500, 4000);
@@ -80,6 +71,7 @@ export const Star = () => {
 			// console.log(e);
 			
 			e.target.cancel();
+			setStarStyles( getStarStyleDefaults() );
 			e.target.play();
 		};
 
@@ -97,19 +89,20 @@ export const Star = () => {
 
 	useEffect( () => {
 
-		setStarStyles( getStarStyleDefaults(warpSpeed) );
+		// setStarStyles( getStarStyleDefaults(warpSpeed) );
 
-		// starRef.current.getAnimations().forEach((anim) => {
-		// 	anim.finish();
-		// });
+		starRef.current.getAnimations().forEach((anim) => {
+			// anim.finish();
+			anim.updatePlaybackRate( warpSpeed * 0.1 );
+		});
 
 	}, [warpSpeed]);
 
-	useEffect( () => {
-		starRef.current.getAnimations().forEach((anim) => {
-			anim.finish();
-		});
-	}, [starStyles]);
+	// useEffect( () => {
+	// 	starRef.current.getAnimations().forEach((anim) => {
+	// 		anim.finish();
+	// 	});
+	// }, [starStyles]);
 
 	return (
 		<StarEl

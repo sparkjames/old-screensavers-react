@@ -1,7 +1,7 @@
 import './control-group-warpspeed.styles.scss';
 
 import { useContext } from 'react';
-import { WarpSpeedContext } from '../../contexts/warpSpeed.context';
+import { WarpSpeedContext, WarpSpeedDefaultValue } from '../../contexts/warpSpeed.context';
 
 export const ControlGroupWarpSpeed = () => {
 
@@ -21,7 +21,7 @@ export const ControlGroupWarpSpeed = () => {
 					<p className="controls-slide-label">Slow</p>
 					<p className="controls-slide-label">Fast</p>
 				</div>
-				<input type="range" min="10" max="150" defaultValue="70" className="controls-slide controls-slide--warpspeed" id="controls-slide--warpspeed" onMouseUp={warpSpeedOnChange} />
+				<input type="range" min="10" max="100" defaultValue={WarpSpeedDefaultValue} className="controls-slide controls-slide--warpspeed" id="controls-slide--warpspeed" onMouseUp={warpSpeedOnChange} />
 			</div>
 		</div>
 	);

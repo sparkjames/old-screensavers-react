@@ -1,5 +1,7 @@
 import { createContext, useState } from "react";
 
+export const WarpSpeedDefaultValue = 25;
+
 export const WarpSpeedContext = createContext({
 	warpSpeed: 0,
 	setWarpSpeed: () => {},
@@ -7,7 +9,7 @@ export const WarpSpeedContext = createContext({
 
 export const WarpSpeedProvider = ({children}) => {
 
-	const [warpSpeed, setWarpSpeed] = useState(70);
+	const [warpSpeed, setWarpSpeed] = useState(WarpSpeedDefaultValue);
 
 	const value = { warpSpeed, setWarpSpeed };
 
