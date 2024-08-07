@@ -83,8 +83,14 @@ export const Star = () => {
 			e.target.play();
 		};
 
-		starRef.current.getAnimations().forEach((anim) => {
-			anim.addEventListener( 'finish', onAnimationEnd );
+		const finishListeners = [];
+
+		starRef.current.getAnimations().forEach((anim, i) => {
+			finishListeners[i] = anim.addEventListener( 'finish', onAnimationEnd );
+		});
+
+		return starRef.current.getAnimations().forEach((anim, i) => {
+			anim.removeEventListener( 'finish', finishListeners[i] )
 		});
 
 	}, []);
