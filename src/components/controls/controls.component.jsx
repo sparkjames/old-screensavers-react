@@ -14,11 +14,11 @@ export const Controls = () => {
 	};
 
 	const controlsOnMouseOver = () => {
-		console.log(controlsRef.current);
+		// console.log(controlsRef.current);
 		controlsRef.current.style.opacity = '1.0';
 	};
 	const controlsOnMouseLeave = () => {
-		console.log(controlsRef.current);
+		// console.log(controlsRef.current);
 		controlsRef.current.style.opacity = '0.33';
 	};
 
