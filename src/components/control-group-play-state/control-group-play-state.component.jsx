@@ -13,7 +13,7 @@ export const ControlGroupPlayState = () => {
 
 	return (
 		<div className="controls-group controls-group--play-state">
-			<h2 className="controls-heading">Play / Stop</h2>
+			<h2 className="controls-heading">Play / Pause</h2>
 
 			<div className="controls-number-container">
 				<button type="button" className="controls-button controls-button--play-state" id="controls-button--play-state" onClick={playStateOnChange}>
