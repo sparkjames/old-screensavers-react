@@ -2,6 +2,7 @@ import './controls.styles.scss';
 import { ControlGroupGraphic } from '../control-group-graphic/control-group-graphic.component';
 import ControlGroupWarpSpeed from '../control-group-warpspeed/control-group-warpspeed.component';
 import ControlGroupQuantity from '../control-group-quantity/control-group-quantity.component';
+import ControlGroupPlayState from '../control-group-play-state/control-group-play-state.component';
 import { useRef, useState } from 'react';
 
 export const Controls = () => {
@@ -40,6 +41,7 @@ export const Controls = () => {
 				<ControlGroupGraphic></ControlGroupGraphic>
 				<ControlGroupQuantity></ControlGroupQuantity>
 				<ControlGroupWarpSpeed></ControlGroupWarpSpeed>
+				<ControlGroupPlayState></ControlGroupPlayState>
 			</div>
 			}
         

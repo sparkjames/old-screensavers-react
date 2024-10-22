@@ -7,17 +7,20 @@ import reportWebVitals from './reportWebVitals';
 import { GraphicTypeProvider } from './contexts/graphicType.context';
 import { WarpSpeedProvider } from './contexts/warpSpeed.context';
 import { QuantityProvider } from './contexts/quantity.context';
+import { PlayStateProvider } from './contexts/play-state.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <QuantityProvider>
-      <GraphicTypeProvider>
-        <WarpSpeedProvider>
-          <App />
-        </WarpSpeedProvider>
-      </GraphicTypeProvider>
-    </QuantityProvider>
+    <PlayStateProvider>
+      <QuantityProvider>
+        <GraphicTypeProvider>
+          <WarpSpeedProvider>
+            <App />
+          </WarpSpeedProvider>
+        </GraphicTypeProvider>
+      </QuantityProvider>
+    </PlayStateProvider>
   </React.StrictMode>
 );
 

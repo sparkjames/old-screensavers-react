@@ -7,6 +7,7 @@ import { ReactComponent as WindowsSVG } from '../../assets/windows311.svg';
 
 import { GraphicTypeContext } from '../../contexts/graphicType.context';
 import { WarpSpeedContext } from '../../contexts/warpSpeed.context';
+import { PlayStateContext } from '../../contexts/play-state.context';
 
 // const perspective = '15in'; // The perspective distance (for CSS).
 // const star_z_distance = '16in'; // The distance for the stars to move (for CSS).
@@ -39,6 +40,7 @@ export const Star = () => {
 
 	const { graphicType } = useContext(GraphicTypeContext);
 	const { warpSpeed } = useContext(WarpSpeedContext);
+	const { playState } = useContext(PlayStateContext);
 
 	const starRef = useRef(null);
 
@@ -98,11 +100,17 @@ export const Star = () => {
 
 	}, [warpSpeed]);
 
-	// useEffect( () => {
-	// 	starRef.current.getAnimations().forEach((anim) => {
-	// 		anim.finish();
-	// 	});
-	// }, [starStyles]);
+	useEffect( () => {
+		if ( playState ) {
+			starRef.current.getAnimations().forEach((anim) => {
+				anim.pause();
+			});
+		} else {
+			starRef.current.getAnimations().forEach((anim) => {
+				anim.play();
+			});
+		}
+	}, [playState]);
 
 	return (
 		<StarEl
